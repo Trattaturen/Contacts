@@ -55,12 +55,8 @@ public class ContactsController {
 		}
 
 		Contacts updatedContacts = WrapperUtils.unWrap(contactsWrapper);
-		currentContacts.setPhones(updatedContacts.getPhones());
-
-		if (contactsService.updateContacts(currentContacts) != null) {
-			return new ResponseEntity<ContactsWrapper>(WrapperUtils.wrap(currentContacts), HttpStatus.OK);
-		}
-		return new ResponseEntity<ContactsWrapper>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		return new ResponseEntity<ContactsWrapper>(WrapperUtils.wrap(contactsService.updateContacts(name, updatedContacts)), HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/contacts/{name}")

@@ -31,9 +31,9 @@ public class ContactsServiceImpl implements ContactsService {
 	}
 
 	@Override
-	public Contacts updateContacts(Contacts contacts) {
+	public Contacts updateContacts(String username, Contacts contacts) {
 
-		Stack<Contacts> existingContactLines = getContactLinesAsStack(contacts);
+		Stack<Contacts> existingContactLines = getContactLinesAsStack(username);
 
 		List<String> updatedPhones = Arrays.asList(contacts.getPhones().split(","));
 
@@ -56,9 +56,9 @@ public class ContactsServiceImpl implements ContactsService {
 		return contactsRepository.deleteByName(username);
 	}
 
-	private Stack<Contacts> getContactLinesAsStack(Contacts contacts) {
+	private Stack<Contacts> getContactLinesAsStack(String username) {
 		Stack<Contacts> existingContactLines = new Stack<Contacts>();
-		existingContactLines.addAll(contactsRepository.findByName(contacts.getName()));
+		existingContactLines.addAll(contactsRepository.findByName(username));
 		Collections.reverse(existingContactLines);
 		return existingContactLines;
 	}

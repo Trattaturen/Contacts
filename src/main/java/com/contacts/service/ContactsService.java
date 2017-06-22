@@ -9,10 +9,11 @@ public interface ContactsService {
 
 	public Contacts addContacts(Contacts contactInfo);
 
-	public Contacts updateContacts(Contacts contactInfo);
+	public Contacts updateContacts(String username, Contacts contactInfo);
 
 	public Contacts findByName(String username);
 	
 	public int deleteByUsername(String username);
+
 	
 }
